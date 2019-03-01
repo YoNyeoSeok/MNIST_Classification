@@ -28,32 +28,6 @@ w = tf.get_variable("w", initializer = tf.constant(w_init))
 b = tf.get_variable("b", initializer = tf.zeros(n_class))
 y_pred = tf_X @ w + b
 
-"""
-from tensorflow.layers import BatchNormalization
-norm = 'batch_norm'
-activation = tf.sigmoid
-n_hiddens = []
-hidden = tf_X
-for i, n_hidden in enumerate(n_hiddens):
-    w = tf.get_variable("w"+str(i), initializer = tf.constant(w_init))
-    b = tf.get_variable("b"+str(i), initializer = tf.zeros(n_class))
-    if norm == 'Batch_norm':
-        norm = BatchNormalization(name='batch_norm'+str(i))
-        hidden = norm(hidden @ w + b)
-    elif norm == 'None':
-        hidden = hidden @ w + b
-    hidden = activation(hidden) 
-w = tf.get_variable("w"+str(len(n_hiddens)), initializer = tf.constant(w_init))
-b = tf.get_variable("b"+str(len(n_hiddens)), initializer = tf.zeros(n_class))
-if norm == 'Batch_norm':
-    norm = BatchNormalization(name='batch_norm'+str(len(n_hiddens)))
-    hidden = norm(hidden @ w + b)
-elif norm == 'None':
-    hidden = hidden @ w + b
-y_pred = hidden
-"""
-#y_pred = tf_X @ w + b
-#y_pred = norm(tf_X @ w + b)
 confusion_matrix = tf.confusion_matrix(labels=tf.argmax(tf_y, 1), 
         predictions=tf.argmax(y_pred, 1))
  
@@ -85,15 +59,3 @@ with tf.Session() as sess:
     
 
 
-"""
-batch_size = 32
-def get_batch_idx(batch_size=batch_size, length=X_train.shape[0]):
-    length = len(get_batch_idx.idxs)
-    if get_batch_idx.loc + batch_size > length:
-        get_batch_idx.loc = 0
-        get_batch_idx.idxs = np.random.permutation(length)
-    get_batch_idx.loc += batch_size
-    return get_batch_idx.idxs[get_batch_idx.loc:get_batch_idx.loc+batch_size]
-get_batch_idx.loc = 0
-get_batch_idx.idxs = np.random.permutation(X_train.shape[0])
-"""
