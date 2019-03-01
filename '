@@ -59,6 +59,7 @@ for j in range(5):
                         feed_dict={tf_X:X_test, tf_y:y_test_one_hot})
                 validation_logs['loss'][j].append(outputs[0])
                 validation_logs['accuracy'][j].append(outputs[1])
+
     
         outputs = sess.run([loss, accuracy, confusion_matrix],
             feed_dict={tf_X:X_test, tf_y:y_test_one_hot})
@@ -69,5 +70,6 @@ for j in range(5):
 
 logs = {'training_logs':training_logs, 'validation_logs':validation_logs, 'test_logs':test_logs, 'validation_interval':10}
 np.save('logs', logs)
+
 
 # model save
