@@ -30,4 +30,3 @@ class get_batch():
         self.idxs = np.random.permutation(self.LENGTH)
         self.shuffled_data = self.data[self.idxs]
 
-

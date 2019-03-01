@@ -31,10 +31,7 @@ class LOGISTIC():
                 predictions = tf.argmax(self.pred, 1))
 
         self.sess = tf.Session()
-        self.sess.run(tf.global_variables_initializer())
-
         self.optim = None
-        self.model_init()
 
     def model_init(self):
         self.sess.run(tf.global_variables_initializer())

@@ -110,3 +110,6 @@ venv.bak/
 
 # numpy
 *.npy
+
+# log
+logs/
